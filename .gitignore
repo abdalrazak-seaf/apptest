@@ -1,0 +1,36 @@
+# env
+.env
+.env.*
+!.env.example
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# node
+node_modules/
+.turbo/
+.next/
+.expo/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+playwright-report/
+test-results/
+coverage/
+
+# mobile native builds
+apps/mobile/ios/
+apps/mobile/android/
+
+# ml artifacts (models are versioned explicitly, see ml/pricing/README.md)
+ml/**/data/
+
+.DS_Store
+apps/mobile/expo-env.d.ts

@@ -1,0 +1,24 @@
+{
+  "app": {
+    "name": "[APP_NAME]",
+    "tagline": "Buy and sell used cars with confidence — safely and at the right price."
+  },
+  "home": {
+    "title": "The trusted used-car marketplace",
+    "comingSoon": "Coming soon to Riyadh"
+  },
+  "health": {
+    "title": "System status",
+    "checking": "Checking the connection to the server…",
+    "ok": "Server is up",
+    "error": "Could not reach the server",
+    "details": "Version {version} · Environment {environment}",
+    "retry": "Try again"
+  },
+  "language": {
+    "label": "Language",
+    "ar": "العربية",
+    "en": "English",
+    "switchTo": "العربية"
+  }
+}

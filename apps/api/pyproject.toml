@@ -1,0 +1,30 @@
+[project]
+name = "api"
+version = "0.1.0"
+description = "[APP_NAME] HTTP API (FastAPI)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "alembic>=1.13",
+  "asyncpg>=0.29",
+  "boto3>=1.35",
+  "fastapi>=0.115",
+  "geoalchemy2>=0.15",
+  "pgvector>=0.3",
+  "prometheus-client>=0.21",
+  "pydantic>=2.9",
+  "pydantic-settings>=2.5",
+  "python-json-logger>=2.0",
+  "redis>=5.1",
+  "sqlalchemy[asyncio]>=2.0.35",
+  "uvicorn[standard]>=0.31",
+]
+
+[dependency-groups]
+dev = ["httpx>=0.27", "boto3-stubs[s3]>=1.35"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/api"]
