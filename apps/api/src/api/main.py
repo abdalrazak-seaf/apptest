@@ -13,7 +13,7 @@ from api.core.config import get_settings
 from api.core.errors import error_tracker
 from api.core.logging import configure_logging
 from api.core.middleware import REQUEST_ID_HEADER, RequestContextMiddleware
-from api.routers import auth, health, metrics, reference, showrooms, users
+from api.routers import auth, health, listings, metrics, reference, showrooms, users
 
 # Shapes Starlette's own errors (unknown route, wrong method) like the rest of the API.
 _FALLBACK_CODES = {404: "not_found", 405: "method_not_allowed"}
@@ -77,6 +77,7 @@ def create_app() -> FastAPI:
     app.include_router(metrics.router)
     app.include_router(auth.router)
     app.include_router(users.router)
+    app.include_router(listings.router)
     app.include_router(reference.router)
     app.include_router(showrooms.router)
     return app

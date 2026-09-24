@@ -146,6 +146,212 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/listings': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Search active listings (no sign-in required) */
+    get: operations['search_listings'];
+    put?: never;
+    /** Create a draft listing */
+    post: operations['create_listing'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/listings/mine': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Your own listings, in any status */
+    get: operations['list_my_listings'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/listings/moderation/queue': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Listings awaiting review (admin only) */
+    get: operations['list_moderation_queue'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/listings/{listing_id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Listing detail (private fields only for the seller) */
+    get: operations['get_listing'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    /** Update Listing */
+    patch: operations['update_listing'];
+    trace?: never;
+  };
+  '/listings/{listing_id}/manage': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** The seller's own view, including the private floor price */
+    get: operations['get_my_listing'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/listings/{listing_id}/moderate': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Approve or reject a listing (admin only) */
+    post: operations['moderate_listing'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/listings/{listing_id}/photos': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Upload one photo (JPEG, PNG or WebP) */
+    post: operations['upload_listing_photo'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/listings/{listing_id}/photos/{photo_id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post?: never;
+    /** Delete Listing Photo */
+    delete: operations['delete_listing_photo'];
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/listings/{listing_id}/publish': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Submit a draft for review */
+    post: operations['publish_listing'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/listings/{listing_id}/sold': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Mark as sold and record the final price */
+    post: operations['mark_listing_sold'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/listings/{listing_id}/status': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    /** Hide or republish your listing */
+    put: operations['set_listing_status'];
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/listings/{listing_id}/status-history': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Why this listing is in its current status */
+    get: operations['get_listing_status_history'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/makes': {
     parameters: {
       query?: never;
@@ -371,6 +577,14 @@ export interface components {
      * @enum {string}
      */
     BodyType: 'sedan' | 'suv' | 'pickup' | 'hatchback' | 'coupe' | 'van' | 'other';
+    /** Body_upload_listing_photo */
+    Body_upload_listing_photo: {
+      /**
+       * File
+       * @description Image file, up to 8 MB
+       */
+      file: string;
+    };
     /** CityOut */
     CityOut: {
       /**
@@ -410,6 +624,11 @@ export interface components {
         [key: string]: unknown;
       } | null;
     };
+    /**
+     * FuelType
+     * @enum {string}
+     */
+    FuelType: 'petrol' | 'diesel' | 'hybrid' | 'electric';
     /** HTTPValidationError */
     HTTPValidationError: {
       /** Detail */
@@ -434,6 +653,234 @@ export interface components {
      * @enum {string}
      */
     Language: 'ar' | 'en';
+    /** ListingCreate */
+    ListingCreate: {
+      /**
+       * Accident History Declared
+       * @default false
+       */
+      accident_history_declared: boolean;
+      /** Asking Price Sar */
+      asking_price_sar: number;
+      body_type?: components['schemas']['BodyType'] | null;
+      /**
+       * City Id
+       * Format: uuid
+       */
+      city_id: string;
+      /** Color Ar */
+      color_ar?: string | null;
+      /** Description Ar */
+      description_ar?: string | null;
+      /** Description En */
+      description_en?: string | null;
+      /** Engine */
+      engine?: string | null;
+      /** Floor Price Sar */
+      floor_price_sar?: number | null;
+      /** @default petrol */
+      fuel_type: components['schemas']['FuelType'];
+      /**
+       * Make Id
+       * Format: uuid
+       */
+      make_id: string;
+      /** Mileage Km */
+      mileage_km: number;
+      /**
+       * Model Id
+       * Format: uuid
+       */
+      model_id: string;
+      /**
+       * Negotiable
+       * @default true
+       */
+      negotiable: boolean;
+      /** @default saudi */
+      regional_spec: components['schemas']['RegionalSpec'];
+      /**
+       * Service History Declared
+       * @default false
+       */
+      service_history_declared: boolean;
+      /** Showroom Id */
+      showroom_id?: string | null;
+      /** @default automatic */
+      transmission: components['schemas']['Transmission'];
+      /** Trim Id */
+      trim_id?: string | null;
+      /** Year */
+      year: number;
+    };
+    /** ListingDetail */
+    ListingDetail: {
+      /** Accident History Declared */
+      accident_history_declared: boolean;
+      /** Asking Price Sar */
+      asking_price_sar: number;
+      body_type: components['schemas']['BodyType'] | null;
+      /**
+       * City Id
+       * Format: uuid
+       */
+      city_id: string;
+      /** Color Ar */
+      color_ar: string | null;
+      cover_photo?: components['schemas']['PhotoOut'] | null;
+      /**
+       * Created At
+       * Format: date-time
+       */
+      created_at: string;
+      /** Description Ar */
+      description_ar: string | null;
+      /** Description En */
+      description_en: string | null;
+      /** Engine */
+      engine: string | null;
+      fuel_type: components['schemas']['FuelType'];
+      /**
+       * Id
+       * Format: uuid
+       */
+      id: string;
+      /**
+       * Make Id
+       * Format: uuid
+       */
+      make_id: string;
+      /** Mileage Km */
+      mileage_km: number;
+      /**
+       * Model Id
+       * Format: uuid
+       */
+      model_id: string;
+      /** Negotiable */
+      negotiable: boolean;
+      /**
+       * Photos
+       * @default []
+       */
+      photos: components['schemas']['PhotoOut'][];
+      /** Published At */
+      published_at: string | null;
+      regional_spec: components['schemas']['RegionalSpec'];
+      /**
+       * Seller Id
+       * Format: uuid
+       */
+      seller_id: string;
+      seller_type: components['schemas']['SellerType'];
+      /** Service History Declared */
+      service_history_declared: boolean;
+      /** Showroom Id */
+      showroom_id: string | null;
+      /** Sold At */
+      sold_at: string | null;
+      status: components['schemas']['ListingStatus'];
+      transmission: components['schemas']['Transmission'];
+      /** Trim Id */
+      trim_id: string | null;
+      /** Views Count */
+      views_count: number;
+      /** Year */
+      year: number;
+    };
+    /** ListingPage */
+    ListingPage: {
+      /** Items */
+      items: components['schemas']['ListingSummary'][];
+      /** Limit */
+      limit: number;
+      /** Offset */
+      offset: number;
+      /** Total */
+      total: number;
+    };
+    /**
+     * ListingStatus
+     * @description Every non-active status carries a reason the seller can read (see StatusReasonCode).
+     * @enum {string}
+     */
+    ListingStatus:
+      'draft' | 'pending_review' | 'active' | 'hidden' | 'rejected' | 'sold' | 'expired';
+    /**
+     * ListingSummary
+     * @description What a search result shows. Deliberately excludes the seller's private fields.
+     */
+    ListingSummary: {
+      /** Asking Price Sar */
+      asking_price_sar: number;
+      /**
+       * City Id
+       * Format: uuid
+       */
+      city_id: string;
+      cover_photo?: components['schemas']['PhotoOut'] | null;
+      /**
+       * Id
+       * Format: uuid
+       */
+      id: string;
+      /**
+       * Make Id
+       * Format: uuid
+       */
+      make_id: string;
+      /** Mileage Km */
+      mileage_km: number;
+      /**
+       * Model Id
+       * Format: uuid
+       */
+      model_id: string;
+      /** Published At */
+      published_at: string | null;
+      seller_type: components['schemas']['SellerType'];
+      status: components['schemas']['ListingStatus'];
+      /** Trim Id */
+      trim_id: string | null;
+      /** Year */
+      year: number;
+    };
+    /**
+     * ListingUpdate
+     * @description Every field optional; only what is sent changes.
+     */
+    ListingUpdate: {
+      /** Accident History Declared */
+      accident_history_declared?: boolean | null;
+      /** Asking Price Sar */
+      asking_price_sar?: number | null;
+      body_type?: components['schemas']['BodyType'] | null;
+      /** City Id */
+      city_id?: string | null;
+      /** Color Ar */
+      color_ar?: string | null;
+      /** Description Ar */
+      description_ar?: string | null;
+      /** Description En */
+      description_en?: string | null;
+      /** Engine */
+      engine?: string | null;
+      /** Floor Price Sar */
+      floor_price_sar?: number | null;
+      fuel_type?: components['schemas']['FuelType'] | null;
+      /** Mileage Km */
+      mileage_km?: number | null;
+      /** Negotiable */
+      negotiable?: boolean | null;
+      regional_spec?: components['schemas']['RegionalSpec'] | null;
+      /** Service History Declared */
+      service_history_declared?: boolean | null;
+      transmission?: components['schemas']['Transmission'] | null;
+      /** Trim Id */
+      trim_id?: string | null;
+      /** Year */
+      year?: number | null;
+    };
     /** MakeOut */
     MakeOut: {
       /**
@@ -447,6 +894,19 @@ export interface components {
       name_en: string;
       /** Slug */
       slug: string;
+    };
+    /** MarkSoldIn */
+    MarkSoldIn: {
+      /** Final Price Sar */
+      final_price_sar: number;
+    };
+    /** ModerationIn */
+    ModerationIn: {
+      /** Approve */
+      approve: boolean;
+      /** Note */
+      note?: string | null;
+      reason_code?: components['schemas']['StatusReasonCode'] | null;
     };
     /** OtpRequestIn */
     OtpRequestIn: {
@@ -473,6 +933,18 @@ export interface components {
       code: string;
       /** Phone */
       phone: string;
+    };
+    /** PhotoOut */
+    PhotoOut: {
+      /**
+       * Id
+       * Format: uuid
+       */
+      id: string;
+      /** Position */
+      position: number;
+      /** Url */
+      url: string;
     };
     /**
      * PublicUserOut
@@ -512,12 +984,108 @@ export interface components {
       refresh_token: string;
     };
     /**
+     * RegionalSpec
+     * @description Where the car was originally specified for; it affects price in the Saudi market.
+     * @enum {string}
+     */
+    RegionalSpec: 'saudi' | 'gcc' | 'american' | 'other';
+    /**
      * RoleUpdate
      * @description A buyer can become a seller themselves; admin roles are granted by an admin only.
      */
     RoleUpdate: {
       role: components['schemas']['UserRole'];
     };
+    /**
+     * SellerListingDetail
+     * @description The seller's own view: adds the private fields only they may see.
+     */
+    SellerListingDetail: {
+      /** Accident History Declared */
+      accident_history_declared: boolean;
+      /** Asking Price Sar */
+      asking_price_sar: number;
+      body_type: components['schemas']['BodyType'] | null;
+      /**
+       * City Id
+       * Format: uuid
+       */
+      city_id: string;
+      /** Color Ar */
+      color_ar: string | null;
+      cover_photo?: components['schemas']['PhotoOut'] | null;
+      /**
+       * Created At
+       * Format: date-time
+       */
+      created_at: string;
+      /** Description Ar */
+      description_ar: string | null;
+      /** Description En */
+      description_en: string | null;
+      /** Engine */
+      engine: string | null;
+      /** Final Price Sar */
+      final_price_sar: number | null;
+      /** Floor Price Sar */
+      floor_price_sar: number | null;
+      fuel_type: components['schemas']['FuelType'];
+      /**
+       * Id
+       * Format: uuid
+       */
+      id: string;
+      /**
+       * Make Id
+       * Format: uuid
+       */
+      make_id: string;
+      /** Mileage Km */
+      mileage_km: number;
+      /**
+       * Model Id
+       * Format: uuid
+       */
+      model_id: string;
+      /** Negotiable */
+      negotiable: boolean;
+      /**
+       * Photos
+       * @default []
+       */
+      photos: components['schemas']['PhotoOut'][];
+      /** Published At */
+      published_at: string | null;
+      regional_spec: components['schemas']['RegionalSpec'];
+      /**
+       * Seller Id
+       * Format: uuid
+       */
+      seller_id: string;
+      seller_type: components['schemas']['SellerType'];
+      /** Service History Declared */
+      service_history_declared: boolean;
+      /** Showroom Id */
+      showroom_id: string | null;
+      /** Sold At */
+      sold_at: string | null;
+      status: components['schemas']['ListingStatus'];
+      status_reason_code: components['schemas']['StatusReasonCode'] | null;
+      /** Status Reason Note */
+      status_reason_note: string | null;
+      transmission: components['schemas']['Transmission'];
+      /** Trim Id */
+      trim_id: string | null;
+      /** Views Count */
+      views_count: number;
+      /** Year */
+      year: number;
+    };
+    /**
+     * SellerType
+     * @enum {string}
+     */
+    SellerType: 'private' | 'showroom';
     /** ShowroomCreate */
     ShowroomCreate: {
       /**
@@ -584,6 +1152,56 @@ export interface components {
       name_en?: string | null;
     };
     /**
+     * SortOrder
+     * @enum {string}
+     */
+    SortOrder: 'newest' | 'price_asc' | 'price_desc' | 'mileage_asc' | 'year_desc';
+    /**
+     * StatusChangeIn
+     * @description Seller-driven status change (hide or republish).
+     */
+    StatusChangeIn: {
+      status: components['schemas']['ListingStatus'];
+    };
+    /** StatusEventOut */
+    StatusEventOut: {
+      /**
+       * Created At
+       * Format: date-time
+       */
+      created_at: string;
+      from_status: components['schemas']['ListingStatus'] | null;
+      /**
+       * Id
+       * Format: uuid
+       */
+      id: string;
+      /** Note */
+      note: string | null;
+      reason_code: components['schemas']['StatusReasonCode'] | null;
+      to_status: components['schemas']['ListingStatus'];
+    };
+    /**
+     * StatusReasonCode
+     * @description Why a listing is not active. Clients translate these; we never send prose.
+     * @enum {string}
+     */
+    StatusReasonCode:
+      | 'seller_draft'
+      | 'seller_hid'
+      | 'seller_sold'
+      | 'seller_republished'
+      | 'awaiting_review'
+      | 'approved'
+      | 'missing_photos'
+      | 'incomplete_details'
+      | 'suspected_duplicate'
+      | 'price_anomaly'
+      | 'prohibited_content'
+      | 'contact_in_description'
+      | 'suspected_fraud'
+      | 'expired_unsold';
+    /**
      * SubscriptionTier
      * @enum {string}
      */
@@ -603,6 +1221,11 @@ export interface components {
       token_type: string;
       user: components['schemas']['UserOut'];
     };
+    /**
+     * Transmission
+     * @enum {string}
+     */
+    Transmission: 'automatic' | 'manual';
     /** TrimOut */
     TrimOut: {
       /**
@@ -1014,6 +1637,874 @@ export interface operations {
         };
         content: {
           'application/json': components['schemas']['ReadinessResponse'];
+        };
+      };
+    };
+  };
+  search_listings: {
+    parameters: {
+      query?: {
+        /** @description Free text, Arabic or English */
+        q?: string | null;
+        make_id?: string | null;
+        model_id?: string | null;
+        trim_id?: string | null;
+        city_id?: string | null;
+        year_min?: number | null;
+        year_max?: number | null;
+        price_min?: number | null;
+        price_max?: number | null;
+        mileage_max?: number | null;
+        body_type?: components['schemas']['BodyType'] | null;
+        transmission?: components['schemas']['Transmission'] | null;
+        fuel_type?: components['schemas']['FuelType'] | null;
+        regional_spec?: components['schemas']['RegionalSpec'] | null;
+        seller_type?: components['schemas']['SellerType'] | null;
+        accident_free?: boolean | null;
+        sort?: components['schemas']['SortOrder'];
+        limit?: number;
+        offset?: number;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ListingPage'];
+        };
+      };
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['HTTPValidationError'];
+        };
+      };
+    };
+  };
+  create_listing: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['ListingCreate'];
+      };
+    };
+    responses: {
+      /** @description Successful Response */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['SellerListingDetail'];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['HTTPValidationError'];
+        };
+      };
+    };
+  };
+  list_my_listings: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['SellerListingDetail'][];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  list_moderation_queue: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['SellerListingDetail'][];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  get_listing: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        listing_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ListingDetail'];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['HTTPValidationError'];
+        };
+      };
+    };
+  };
+  update_listing: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        listing_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['ListingUpdate'];
+      };
+    };
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['SellerListingDetail'];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['HTTPValidationError'];
+        };
+      };
+    };
+  };
+  get_my_listing: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        listing_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['SellerListingDetail'];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['HTTPValidationError'];
+        };
+      };
+    };
+  };
+  moderate_listing: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        listing_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['ModerationIn'];
+      };
+    };
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['SellerListingDetail'];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['HTTPValidationError'];
+        };
+      };
+    };
+  };
+  upload_listing_photo: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        listing_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'multipart/form-data': components['schemas']['Body_upload_listing_photo'];
+      };
+    };
+    responses: {
+      /** @description Successful Response */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['PhotoOut'];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['HTTPValidationError'];
+        };
+      };
+    };
+  };
+  delete_listing_photo: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        listing_id: string;
+        photo_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['Ack'];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['HTTPValidationError'];
+        };
+      };
+    };
+  };
+  publish_listing: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        listing_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['SellerListingDetail'];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['HTTPValidationError'];
+        };
+      };
+    };
+  };
+  mark_listing_sold: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        listing_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['MarkSoldIn'];
+      };
+    };
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['SellerListingDetail'];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['HTTPValidationError'];
+        };
+      };
+    };
+  };
+  set_listing_status: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        listing_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['StatusChangeIn'];
+      };
+    };
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['SellerListingDetail'];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['HTTPValidationError'];
+        };
+      };
+    };
+  };
+  get_listing_status_history: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        listing_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['StatusEventOut'][];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ErrorResponse'];
+        };
+      };
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['HTTPValidationError'];
         };
       };
     };

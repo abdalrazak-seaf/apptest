@@ -33,8 +33,10 @@ from api.core.redis import get_redis
 from api.core.security import create_access_token
 from api.integrations.sms import MockSmsProvider, get_sms_provider
 from api.main import create_app
-from api.models.enums import UserRole
+from api.models.enums import ListingStatus, UserRole
 from api.models.geo import City
+from api.models.listing import Listing
+from api.models.taxonomy import Make, Trim, VehicleModel
 from api.models.user import User
 
 ALEMBIC_INI = Path(__file__).resolve().parents[2] / "alembic.ini"
@@ -175,3 +177,113 @@ def auth_headers(settings: Settings) -> AuthHeaders:
         return {"Authorization": f"Bearer {token}"}
 
     return headers
+
+
+@pytest.fixture
+async def make(session: AsyncSession) -> Make:
+    """A make/model/trim tree with the Arabic aliases search relies on."""
+    make = Make(
+        slug=f"gmc-{uuid.uuid4().hex[:8]}",
+        name_ar="جي إم سي",
+        name_en="GMC",
+        aliases=["جمس", "gmc"],
+        sort_order=1,
+    )
+    session.add(make)
+    await session.commit()
+    return make
+
+
+@pytest.fixture
+async def vehicle_model(session: AsyncSession, make: Make) -> VehicleModel:
+    model = VehicleModel(
+        make_id=make.id,
+        slug="yukon",
+        name_ar="يوكن",
+        name_en="Yukon",
+        aliases=["يوكن", "yukon"],
+        body_type="suv",
+    )
+    session.add(model)
+    await session.commit()
+    return model
+
+
+@pytest.fixture
+async def trim(session: AsyncSession, vehicle_model: VehicleModel) -> Trim:
+    trim = Trim(
+        model_id=vehicle_model.id,
+        slug="denali",
+        name_ar="دينالي",
+        name_en="Denali",
+        aliases=["دينالي", "denali"],
+    )
+    session.add(trim)
+    await session.commit()
+    return trim
+
+
+class ListingFactory(Protocol):
+    async def __call__(
+        self,
+        *,
+        seller: User,
+        status: ListingStatus = ListingStatus.ACTIVE,
+        photos: int = 4,
+        **fields: object,
+    ) -> Listing: ...
+
+
+@pytest.fixture
+def make_listing(
+    session: AsyncSession, city: City, make: Make, vehicle_model: VehicleModel
+) -> ListingFactory:
+    """Creates a listing directly in the database, bypassing the HTTP flow."""
+    from api.models.listing import ListingPhoto
+    from api.services.listings import build_search_text
+
+    async def factory(
+        *,
+        seller: User,
+        status: ListingStatus = ListingStatus.ACTIVE,
+        photos: int = 4,
+        **fields: object,
+    ) -> Listing:
+        defaults: dict[str, object] = {
+            "make_id": make.id,
+            "model_id": vehicle_model.id,
+            "city_id": city.id,
+            "year": 2019,
+            "mileage_km": 85_000,
+            "asking_price_sar": 90_000,
+            "status": status,
+        }
+        defaults.update(fields)
+        listing = Listing(seller_id=seller.id, **defaults)
+        session.add(listing)
+        await session.flush()
+        for position in range(photos):
+            session.add(
+                ListingPhoto(
+                    listing_id=listing.id,
+                    storage_key=f"listings/{listing.id}/{position}.jpg",
+                    content_type="image/jpeg",
+                    size_bytes=1024,
+                    position=position,
+                )
+            )
+        listing.search_text = await build_search_text(session, listing)
+        await session.commit()
+        await session.refresh(listing, ["photos"])
+        return listing
+
+    return factory
+
+
+def png_bytes() -> bytes:
+    """The smallest valid PNG, for upload tests."""
+    return (
+        b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01"
+        b"\x08\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\nIDATx\x9cc\x00"
+        b"\x01\x00\x00\x05\x00\x01\r\n-\xb4\x00\x00\x00\x00IEND\xaeB`\x82"
+    )

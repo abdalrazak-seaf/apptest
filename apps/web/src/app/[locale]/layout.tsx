@@ -1,9 +1,11 @@
-import { getDirection, isLocale, locales } from '@thiqa/i18n';
+import { getDirection, isLocale, locales, type Locale } from '@thiqa/i18n';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
+
+import { SiteHeader } from '@/components/SiteHeader';
 import '../globals.css';
 
 export function generateStaticParams() {
@@ -32,9 +34,12 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} dir={getDirection(locale)}>
+    <html lang={locale} dir={getDirection(locale as Locale)}>
       <body className="min-h-screen antialiased">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <SiteHeader locale={locale as Locale} />
+          <main className="mx-auto w-full max-w-5xl px-4 py-6">{children}</main>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

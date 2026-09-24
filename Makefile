@@ -7,7 +7,7 @@ INFRA_SERVICES := postgres redis minio mailpit
 TEST_DATABASE_URL ?= postgresql+asyncpg://thiqa:thiqa@localhost:5432/thiqa_test
 
 .PHONY: help setup infra-up infra-down infra-reset dev dev-mobile up-full migrate migration \
-	seed test test-unit test-py test-js e2e lint format api-client clean
+	seed admin test test-unit test-py test-js e2e lint format api-client clean
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-14s\033[0m %s\n", $$1, $$2}'
@@ -46,6 +46,10 @@ migration: ## Create a migration: make migration name="add listings"
 
 seed: ## Load development seed data
 	cd apps/api && uv run python -m api.scripts.seed
+
+admin: ## Grant admin to a phone number: make admin PHONE=0501234567
+	@test -n "$(PHONE)" || (echo 'usage: make admin PHONE=0501234567' && exit 1)
+	cd apps/api && uv run python -m api.scripts.promote_admin "$(PHONE)"
 
 test: test-py test-js ## Run all tests (needs `make infra-up` for integration tests)
 

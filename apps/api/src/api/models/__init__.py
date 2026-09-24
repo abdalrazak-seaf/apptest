@@ -1,7 +1,9 @@
 """SQLAlchemy models. Import every model module here so Alembic sees it."""
 
 from api.core.db import Base
+from api.models.event import Event, EventName
 from api.models.geo import City
+from api.models.listing import Listing, ListingPhoto, ListingStatusEvent
 from api.models.showroom import Showroom, ShowroomStaff
 from api.models.taxonomy import Make, Trim, VehicleModel
 from api.models.user import OtpRequest, RefreshToken, User
@@ -9,6 +11,11 @@ from api.models.user import OtpRequest, RefreshToken, User
 __all__ = [
     "Base",
     "City",
+    "Event",
+    "EventName",
+    "Listing",
+    "ListingPhoto",
+    "ListingStatusEvent",
     "Make",
     "OtpRequest",
     "RefreshToken",
