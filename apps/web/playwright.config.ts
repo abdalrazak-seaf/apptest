@@ -34,7 +34,9 @@ export default defineConfig({
         `uv run uvicorn api.main:app --port ${API_PORT}`,
       ].join(' && '),
       cwd: '../api',
-      url: `http://localhost:${API_PORT}/health`,
+      // Readiness, not liveness: if Postgres or Redis is missing the run fails here with a
+      // clear timeout, instead of every login-dependent test failing for an unclear reason.
+      url: `http://localhost:${API_PORT}/health/ready`,
       env: {
         APP_ENV: 'test',
         // Photos live in memory, so end-to-end runs need no object storage.
