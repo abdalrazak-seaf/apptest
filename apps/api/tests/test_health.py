@@ -104,3 +104,15 @@ async def test_unhandled_errors_return_generic_500(app: FastAPI) -> None:
     assert response.status_code == 500
     assert response.json() == {"code": "internal_error"}
     assert "secret" not in response.text
+
+
+async def test_unknown_routes_use_the_same_error_shape(client: AsyncClient) -> None:
+    response = await client.get("/does-not-exist")
+    assert response.status_code == 404
+    assert response.json() == {"code": "not_found"}
+
+
+async def test_wrong_method_uses_the_same_error_shape(client: AsyncClient) -> None:
+    response = await client.post("/health")
+    assert response.status_code == 405
+    assert response.json() == {"code": "method_not_allowed"}

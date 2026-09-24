@@ -1,24 +1,11 @@
+"""Test environment.
+
+The fixtures live in `api.testing`, registered as a pytest plugin in the root pyproject.toml.
+This file only sets the environment variables the app reads when settings are first built.
+"""
+
 import os
 
-# Unit tests run fully offline: in-memory storage, no real network calls.
 os.environ.setdefault("APP_ENV", "test")
 os.environ.setdefault("STORAGE_PROVIDER", "memory")
-
-from collections.abc import AsyncIterator
-
-import pytest
-from fastapi import FastAPI
-from httpx import ASGITransport, AsyncClient
-
-from api.main import create_app
-
-
-@pytest.fixture
-def app() -> FastAPI:
-    return create_app()
-
-
-@pytest.fixture
-async def client(app: FastAPI) -> AsyncIterator[AsyncClient]:
-    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as c:
-        yield c
+os.environ.setdefault("JWT_SECRET", "test-secret-" + "x" * 32)
