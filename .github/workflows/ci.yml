@@ -76,6 +76,10 @@ jobs:
           cache: pnpm
       - run: uv sync --all-packages --frozen
       - run: pnpm install --frozen-lockfile
+      - name: Start Postgres and Redis for the end-to-end run
+        # Login is rate limited through Redis, so the API needs both to serve the flow.
+        run: |
+          docker compose -f infra/docker-compose.yml up -d --build --wait postgres redis
       - run: pnpm --filter @thiqa/web exec playwright install --with-deps chromium
       - run: pnpm --filter @thiqa/web build
       - run: pnpm --filter @thiqa/web e2e

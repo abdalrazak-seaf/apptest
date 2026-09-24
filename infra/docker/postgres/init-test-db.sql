@@ -1,2 +1,3 @@
--- Separate database for the integration test suite so tests never touch dev data.
+-- Separate databases so neither test suite touches dev data, nor each other's rows.
 CREATE DATABASE thiqa_test OWNER thiqa;
+CREATE DATABASE thiqa_e2e OWNER thiqa;

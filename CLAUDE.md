@@ -103,11 +103,23 @@ docs/           architecture notes, ADRs
   rotated on every use (replaying a rotated token revokes the whole family). OTP codes are
   stored as keyed hashes and rate-limited per phone and per IP.
 - Seed data lives in `apps/api/src/api/data/*.json` and is applied idempotently by
-  `make seed` (matched by slug).
+  `make seed` (matched by slug). The first admin is created with `make admin PHONE=05…`;
+  there is deliberately no way to become an admin through the API.
+- Listing status changes go through `services/listings.transition`, which writes a
+  `ListingStatusEvent`. Every non-active status carries a `StatusReasonCode` the seller can
+  read — never an unexplained state.
+- `extra={...}` in a log call must not use a name `logging.LogRecord` already owns
+  (`message`, `created`, `name`, …); a test walks the source and fails if one does.
 
 ## TypeScript conventions
 
 - Strict TS; shared packages are source-only (`main: src/index.ts`, no build step).
+- Web auth: tokens live in httpOnly cookies set by server actions (`src/actions/auth.ts`);
+  page code never sees them. Server components call the API through `serverApi()` (anonymous)
+  or `authedApi()` (signed in).
+- Buyer-facing responses come from `ListingDetail`; the seller's own view is a separate
+  endpoint (`/listings/{id}/manage`) returning `SellerListingDetail`, so private fields
+  cannot leak through a shared response model.
 - All API calls go through `@thiqa/api-client` — never hand-write fetch URLs or response types.
 - Design values come from `@thiqa/ui` tokens (Tailwind classes like `bg-brand-700`,
   `text-neutral-700`; RN via `src/theme.ts`). No ad-hoc hex colors.

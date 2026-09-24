@@ -25,6 +25,21 @@
         "title": "BodyType",
         "type": "string"
       },
+      "Body_upload_listing_photo": {
+        "properties": {
+          "file": {
+            "contentMediaType": "application/octet-stream",
+            "description": "Image file, up to 8 MB",
+            "title": "File",
+            "type": "string"
+          }
+        },
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_listing_photo",
+        "type": "object"
+      },
       "CityOut": {
         "properties": {
           "id": {
@@ -119,6 +134,16 @@
         "title": "ErrorResponse",
         "type": "object"
       },
+      "FuelType": {
+        "enum": [
+          "petrol",
+          "diesel",
+          "hybrid",
+          "electric"
+        ],
+        "title": "FuelType",
+        "type": "string"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -169,6 +194,744 @@
         "title": "Language",
         "type": "string"
       },
+      "ListingCreate": {
+        "properties": {
+          "accident_history_declared": {
+            "default": false,
+            "title": "Accident History Declared",
+            "type": "boolean"
+          },
+          "asking_price_sar": {
+            "exclusiveMinimum": 0.0,
+            "maximum": 20000000.0,
+            "title": "Asking Price Sar",
+            "type": "integer"
+          },
+          "body_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BodyType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "city_id": {
+            "format": "uuid",
+            "title": "City Id",
+            "type": "string"
+          },
+          "color_ar": {
+            "anyOf": [
+              {
+                "maxLength": 40,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Color Ar"
+          },
+          "description_ar": {
+            "anyOf": [
+              {
+                "maxLength": 4000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description Ar"
+          },
+          "description_en": {
+            "anyOf": [
+              {
+                "maxLength": 4000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description En"
+          },
+          "engine": {
+            "anyOf": [
+              {
+                "maxLength": 60,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Engine"
+          },
+          "floor_price_sar": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "maximum": 20000000.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Floor Price Sar"
+          },
+          "fuel_type": {
+            "$ref": "#/components/schemas/FuelType",
+            "default": "petrol"
+          },
+          "make_id": {
+            "format": "uuid",
+            "title": "Make Id",
+            "type": "string"
+          },
+          "mileage_km": {
+            "maximum": 2000000.0,
+            "minimum": 0.0,
+            "title": "Mileage Km",
+            "type": "integer"
+          },
+          "model_id": {
+            "format": "uuid",
+            "title": "Model Id",
+            "type": "string"
+          },
+          "negotiable": {
+            "default": true,
+            "title": "Negotiable",
+            "type": "boolean"
+          },
+          "regional_spec": {
+            "$ref": "#/components/schemas/RegionalSpec",
+            "default": "saudi"
+          },
+          "service_history_declared": {
+            "default": false,
+            "title": "Service History Declared",
+            "type": "boolean"
+          },
+          "showroom_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Showroom Id"
+          },
+          "transmission": {
+            "$ref": "#/components/schemas/Transmission",
+            "default": "automatic"
+          },
+          "trim_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trim Id"
+          },
+          "year": {
+            "maximum": 2100.0,
+            "minimum": 1970.0,
+            "title": "Year",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "make_id",
+          "model_id",
+          "year",
+          "mileage_km",
+          "asking_price_sar",
+          "city_id"
+        ],
+        "title": "ListingCreate",
+        "type": "object"
+      },
+      "ListingDetail": {
+        "properties": {
+          "accident_history_declared": {
+            "title": "Accident History Declared",
+            "type": "boolean"
+          },
+          "asking_price_sar": {
+            "title": "Asking Price Sar",
+            "type": "integer"
+          },
+          "body_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BodyType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "city_id": {
+            "format": "uuid",
+            "title": "City Id",
+            "type": "string"
+          },
+          "color_ar": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Color Ar"
+          },
+          "cover_photo": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PhotoOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "description_ar": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description Ar"
+          },
+          "description_en": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description En"
+          },
+          "engine": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Engine"
+          },
+          "fuel_type": {
+            "$ref": "#/components/schemas/FuelType"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "make_id": {
+            "format": "uuid",
+            "title": "Make Id",
+            "type": "string"
+          },
+          "mileage_km": {
+            "title": "Mileage Km",
+            "type": "integer"
+          },
+          "model_id": {
+            "format": "uuid",
+            "title": "Model Id",
+            "type": "string"
+          },
+          "negotiable": {
+            "title": "Negotiable",
+            "type": "boolean"
+          },
+          "photos": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/PhotoOut"
+            },
+            "title": "Photos",
+            "type": "array"
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published At"
+          },
+          "regional_spec": {
+            "$ref": "#/components/schemas/RegionalSpec"
+          },
+          "seller_id": {
+            "format": "uuid",
+            "title": "Seller Id",
+            "type": "string"
+          },
+          "seller_type": {
+            "$ref": "#/components/schemas/SellerType"
+          },
+          "service_history_declared": {
+            "title": "Service History Declared",
+            "type": "boolean"
+          },
+          "showroom_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Showroom Id"
+          },
+          "sold_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sold At"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ListingStatus"
+          },
+          "transmission": {
+            "$ref": "#/components/schemas/Transmission"
+          },
+          "trim_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trim Id"
+          },
+          "views_count": {
+            "title": "Views Count",
+            "type": "integer"
+          },
+          "year": {
+            "title": "Year",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "make_id",
+          "model_id",
+          "trim_id",
+          "year",
+          "mileage_km",
+          "asking_price_sar",
+          "city_id",
+          "status",
+          "seller_type",
+          "published_at",
+          "body_type",
+          "transmission",
+          "fuel_type",
+          "engine",
+          "color_ar",
+          "regional_spec",
+          "accident_history_declared",
+          "service_history_declared",
+          "negotiable",
+          "description_ar",
+          "description_en",
+          "seller_id",
+          "showroom_id",
+          "views_count",
+          "sold_at",
+          "created_at"
+        ],
+        "title": "ListingDetail",
+        "type": "object"
+      },
+      "ListingPage": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ListingSummary"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "limit": {
+            "title": "Limit",
+            "type": "integer"
+          },
+          "offset": {
+            "title": "Offset",
+            "type": "integer"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "items",
+          "total",
+          "limit",
+          "offset"
+        ],
+        "title": "ListingPage",
+        "type": "object"
+      },
+      "ListingStatus": {
+        "description": "Every non-active status carries a reason the seller can read (see StatusReasonCode).",
+        "enum": [
+          "draft",
+          "pending_review",
+          "active",
+          "hidden",
+          "rejected",
+          "sold",
+          "expired"
+        ],
+        "title": "ListingStatus",
+        "type": "string"
+      },
+      "ListingSummary": {
+        "description": "What a search result shows. Deliberately excludes the seller's private fields.",
+        "properties": {
+          "asking_price_sar": {
+            "title": "Asking Price Sar",
+            "type": "integer"
+          },
+          "city_id": {
+            "format": "uuid",
+            "title": "City Id",
+            "type": "string"
+          },
+          "cover_photo": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PhotoOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "make_id": {
+            "format": "uuid",
+            "title": "Make Id",
+            "type": "string"
+          },
+          "mileage_km": {
+            "title": "Mileage Km",
+            "type": "integer"
+          },
+          "model_id": {
+            "format": "uuid",
+            "title": "Model Id",
+            "type": "string"
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published At"
+          },
+          "seller_type": {
+            "$ref": "#/components/schemas/SellerType"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ListingStatus"
+          },
+          "trim_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trim Id"
+          },
+          "year": {
+            "title": "Year",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "make_id",
+          "model_id",
+          "trim_id",
+          "year",
+          "mileage_km",
+          "asking_price_sar",
+          "city_id",
+          "status",
+          "seller_type",
+          "published_at"
+        ],
+        "title": "ListingSummary",
+        "type": "object"
+      },
+      "ListingUpdate": {
+        "description": "Every field optional; only what is sent changes.",
+        "properties": {
+          "accident_history_declared": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accident History Declared"
+          },
+          "asking_price_sar": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "maximum": 20000000.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Asking Price Sar"
+          },
+          "body_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BodyType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "city_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City Id"
+          },
+          "color_ar": {
+            "anyOf": [
+              {
+                "maxLength": 40,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Color Ar"
+          },
+          "description_ar": {
+            "anyOf": [
+              {
+                "maxLength": 4000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description Ar"
+          },
+          "description_en": {
+            "anyOf": [
+              {
+                "maxLength": 4000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description En"
+          },
+          "engine": {
+            "anyOf": [
+              {
+                "maxLength": 60,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Engine"
+          },
+          "floor_price_sar": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "maximum": 20000000.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Floor Price Sar"
+          },
+          "fuel_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FuelType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "mileage_km": {
+            "anyOf": [
+              {
+                "maximum": 2000000.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mileage Km"
+          },
+          "negotiable": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Negotiable"
+          },
+          "regional_spec": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RegionalSpec"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "service_history_declared": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Service History Declared"
+          },
+          "transmission": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Transmission"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "trim_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trim Id"
+          },
+          "year": {
+            "anyOf": [
+              {
+                "maximum": 2100.0,
+                "minimum": 1970.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year"
+          }
+        },
+        "title": "ListingUpdate",
+        "type": "object"
+      },
       "MakeOut": {
         "properties": {
           "id": {
@@ -196,6 +959,56 @@
           "name_en"
         ],
         "title": "MakeOut",
+        "type": "object"
+      },
+      "MarkSoldIn": {
+        "properties": {
+          "final_price_sar": {
+            "exclusiveMinimum": 0.0,
+            "maximum": 20000000.0,
+            "title": "Final Price Sar",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "final_price_sar"
+        ],
+        "title": "MarkSoldIn",
+        "type": "object"
+      },
+      "ModerationIn": {
+        "properties": {
+          "approve": {
+            "title": "Approve",
+            "type": "boolean"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "maxLength": 500,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "reason_code": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StatusReasonCode"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "approve"
+        ],
+        "title": "ModerationIn",
         "type": "object"
       },
       "OtpRequestIn": {
@@ -269,6 +1082,30 @@
           "code"
         ],
         "title": "OtpVerifyIn",
+        "type": "object"
+      },
+      "PhotoOut": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "position": {
+            "title": "Position",
+            "type": "integer"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "position",
+          "url"
+        ],
+        "title": "PhotoOut",
         "type": "object"
       },
       "PublicUserOut": {
@@ -349,6 +1186,17 @@
         "title": "RefreshIn",
         "type": "object"
       },
+      "RegionalSpec": {
+        "description": "Where the car was originally specified for; it affects price in the Saudi market.",
+        "enum": [
+          "saudi",
+          "gcc",
+          "american",
+          "other"
+        ],
+        "title": "RegionalSpec",
+        "type": "string"
+      },
       "RoleUpdate": {
         "description": "A buyer can become a seller themselves; admin roles are granted by an admin only.",
         "properties": {
@@ -361,6 +1209,290 @@
         ],
         "title": "RoleUpdate",
         "type": "object"
+      },
+      "SellerListingDetail": {
+        "description": "The seller's own view: adds the private fields only they may see.",
+        "properties": {
+          "accident_history_declared": {
+            "title": "Accident History Declared",
+            "type": "boolean"
+          },
+          "asking_price_sar": {
+            "title": "Asking Price Sar",
+            "type": "integer"
+          },
+          "body_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BodyType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "city_id": {
+            "format": "uuid",
+            "title": "City Id",
+            "type": "string"
+          },
+          "color_ar": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Color Ar"
+          },
+          "cover_photo": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PhotoOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "description_ar": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description Ar"
+          },
+          "description_en": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description En"
+          },
+          "engine": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Engine"
+          },
+          "final_price_sar": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Final Price Sar"
+          },
+          "floor_price_sar": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Floor Price Sar"
+          },
+          "fuel_type": {
+            "$ref": "#/components/schemas/FuelType"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "make_id": {
+            "format": "uuid",
+            "title": "Make Id",
+            "type": "string"
+          },
+          "mileage_km": {
+            "title": "Mileage Km",
+            "type": "integer"
+          },
+          "model_id": {
+            "format": "uuid",
+            "title": "Model Id",
+            "type": "string"
+          },
+          "negotiable": {
+            "title": "Negotiable",
+            "type": "boolean"
+          },
+          "photos": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/PhotoOut"
+            },
+            "title": "Photos",
+            "type": "array"
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published At"
+          },
+          "regional_spec": {
+            "$ref": "#/components/schemas/RegionalSpec"
+          },
+          "seller_id": {
+            "format": "uuid",
+            "title": "Seller Id",
+            "type": "string"
+          },
+          "seller_type": {
+            "$ref": "#/components/schemas/SellerType"
+          },
+          "service_history_declared": {
+            "title": "Service History Declared",
+            "type": "boolean"
+          },
+          "showroom_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Showroom Id"
+          },
+          "sold_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sold At"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ListingStatus"
+          },
+          "status_reason_code": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StatusReasonCode"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status_reason_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status Reason Note"
+          },
+          "transmission": {
+            "$ref": "#/components/schemas/Transmission"
+          },
+          "trim_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trim Id"
+          },
+          "views_count": {
+            "title": "Views Count",
+            "type": "integer"
+          },
+          "year": {
+            "title": "Year",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "make_id",
+          "model_id",
+          "trim_id",
+          "year",
+          "mileage_km",
+          "asking_price_sar",
+          "city_id",
+          "status",
+          "seller_type",
+          "published_at",
+          "body_type",
+          "transmission",
+          "fuel_type",
+          "engine",
+          "color_ar",
+          "regional_spec",
+          "accident_history_declared",
+          "service_history_declared",
+          "negotiable",
+          "description_ar",
+          "description_en",
+          "seller_id",
+          "showroom_id",
+          "views_count",
+          "sold_at",
+          "created_at",
+          "floor_price_sar",
+          "final_price_sar",
+          "status_reason_code",
+          "status_reason_note"
+        ],
+        "title": "SellerListingDetail",
+        "type": "object"
+      },
+      "SellerType": {
+        "enum": [
+          "private",
+          "showroom"
+        ],
+        "title": "SellerType",
+        "type": "string"
       },
       "ShowroomCreate": {
         "properties": {
@@ -541,6 +1673,109 @@
         "title": "ShowroomUpdate",
         "type": "object"
       },
+      "SortOrder": {
+        "enum": [
+          "newest",
+          "price_asc",
+          "price_desc",
+          "mileage_asc",
+          "year_desc"
+        ],
+        "title": "SortOrder",
+        "type": "string"
+      },
+      "StatusChangeIn": {
+        "description": "Seller-driven status change (hide or republish).",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/ListingStatus"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "title": "StatusChangeIn",
+        "type": "object"
+      },
+      "StatusEventOut": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "from_status": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ListingStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "reason_code": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StatusReasonCode"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "to_status": {
+            "$ref": "#/components/schemas/ListingStatus"
+          }
+        },
+        "required": [
+          "id",
+          "from_status",
+          "to_status",
+          "reason_code",
+          "note",
+          "created_at"
+        ],
+        "title": "StatusEventOut",
+        "type": "object"
+      },
+      "StatusReasonCode": {
+        "description": "Why a listing is not active. Clients translate these; we never send prose.",
+        "enum": [
+          "seller_draft",
+          "seller_hid",
+          "seller_sold",
+          "seller_republished",
+          "awaiting_review",
+          "approved",
+          "missing_photos",
+          "incomplete_details",
+          "suspected_duplicate",
+          "price_anomaly",
+          "prohibited_content",
+          "contact_in_description",
+          "suspected_fraud",
+          "expired_unsold"
+        ],
+        "title": "StatusReasonCode",
+        "type": "string"
+      },
       "SubscriptionTier": {
         "enum": [
           "free",
@@ -581,6 +1816,14 @@
         ],
         "title": "TokensOut",
         "type": "object"
+      },
+      "Transmission": {
+        "enum": [
+          "automatic",
+          "manual"
+        ],
+        "title": "Transmission",
+        "type": "string"
       },
       "TrimOut": {
         "properties": {
@@ -1234,6 +2477,1445 @@
         "summary": "Get Readiness",
         "tags": [
           "health"
+        ]
+      }
+    },
+    "/listings": {
+      "get": {
+        "operationId": "search_listings",
+        "parameters": [
+          {
+            "description": "Free text, Arabic or English",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 200,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Free text, Arabic or English",
+              "title": "Q"
+            }
+          },
+          {
+            "in": "query",
+            "name": "make_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Make Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "model_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Model Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "trim_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Trim Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "city_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "City Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "year_min",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Year Min"
+            }
+          },
+          {
+            "in": "query",
+            "name": "year_max",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Year Max"
+            }
+          },
+          {
+            "in": "query",
+            "name": "price_min",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Price Min"
+            }
+          },
+          {
+            "in": "query",
+            "name": "price_max",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Price Max"
+            }
+          },
+          {
+            "in": "query",
+            "name": "mileage_max",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mileage Max"
+            }
+          },
+          {
+            "in": "query",
+            "name": "body_type",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/BodyType"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Body Type"
+            }
+          },
+          {
+            "in": "query",
+            "name": "transmission",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Transmission"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Transmission"
+            }
+          },
+          {
+            "in": "query",
+            "name": "fuel_type",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/FuelType"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Fuel Type"
+            }
+          },
+          {
+            "in": "query",
+            "name": "regional_spec",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/RegionalSpec"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Regional Spec"
+            }
+          },
+          {
+            "in": "query",
+            "name": "seller_type",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/SellerType"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Seller Type"
+            }
+          },
+          {
+            "in": "query",
+            "name": "accident_free",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Accident Free"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/SortOrder",
+              "default": "newest"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 50,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListingPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Search active listings (no sign-in required)",
+        "tags": [
+          "listings"
+        ]
+      },
+      "post": {
+        "operationId": "create_listing",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ListingCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerListingDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create a draft listing",
+        "tags": [
+          "listings"
+        ]
+      }
+    },
+    "/listings/mine": {
+      "get": {
+        "operationId": "list_my_listings",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/SellerListingDetail"
+                  },
+                  "title": "Response List My Listings",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Your own listings, in any status",
+        "tags": [
+          "listings"
+        ]
+      }
+    },
+    "/listings/moderation/queue": {
+      "get": {
+        "operationId": "list_moderation_queue",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/SellerListingDetail"
+                  },
+                  "title": "Response List Moderation Queue",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Listings awaiting review (admin only)",
+        "tags": [
+          "listings"
+        ]
+      }
+    },
+    "/listings/{listing_id}": {
+      "get": {
+        "operationId": "get_listing",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "listing_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Listing Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListingDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Listing detail (private fields only for the seller)",
+        "tags": [
+          "listings"
+        ]
+      },
+      "patch": {
+        "operationId": "update_listing",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "listing_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Listing Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ListingUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerListingDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Update Listing",
+        "tags": [
+          "listings"
+        ]
+      }
+    },
+    "/listings/{listing_id}/manage": {
+      "get": {
+        "operationId": "get_my_listing",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "listing_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Listing Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerListingDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "The seller's own view, including the private floor price",
+        "tags": [
+          "listings"
+        ]
+      }
+    },
+    "/listings/{listing_id}/moderate": {
+      "post": {
+        "operationId": "moderate_listing",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "listing_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Listing Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModerationIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerListingDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Approve or reject a listing (admin only)",
+        "tags": [
+          "listings"
+        ]
+      }
+    },
+    "/listings/{listing_id}/photos": {
+      "post": {
+        "operationId": "upload_listing_photo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "listing_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Listing Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_listing_photo"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhotoOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Upload one photo (JPEG, PNG or WebP)",
+        "tags": [
+          "listings"
+        ]
+      }
+    },
+    "/listings/{listing_id}/photos/{photo_id}": {
+      "delete": {
+        "operationId": "delete_listing_photo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "listing_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Listing Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "photo_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Photo Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ack"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Listing Photo",
+        "tags": [
+          "listings"
+        ]
+      }
+    },
+    "/listings/{listing_id}/publish": {
+      "post": {
+        "operationId": "publish_listing",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "listing_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Listing Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerListingDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Submit a draft for review",
+        "tags": [
+          "listings"
+        ]
+      }
+    },
+    "/listings/{listing_id}/sold": {
+      "post": {
+        "operationId": "mark_listing_sold",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "listing_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Listing Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MarkSoldIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerListingDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Mark as sold and record the final price",
+        "tags": [
+          "listings"
+        ]
+      }
+    },
+    "/listings/{listing_id}/status": {
+      "put": {
+        "operationId": "set_listing_status",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "listing_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Listing Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusChangeIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerListingDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Hide or republish your listing",
+        "tags": [
+          "listings"
+        ]
+      }
+    },
+    "/listings/{listing_id}/status-history": {
+      "get": {
+        "operationId": "get_listing_status_history",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "listing_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Listing Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/StatusEventOut"
+                  },
+                  "title": "Response Get Listing Status History",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Why this listing is in its current status",
+        "tags": [
+          "listings"
         ]
       }
     },

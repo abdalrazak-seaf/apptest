@@ -14,6 +14,7 @@ from api.core.errors import forbidden, unauthorized
 from api.core.redis import get_redis
 from api.core.security import InvalidTokenError, decode_access_token
 from api.integrations.sms import SmsProvider, get_sms_provider
+from api.integrations.storage import StorageProvider, get_storage
 from api.models.enums import UserRole
 from api.models.user import User
 
@@ -21,6 +22,7 @@ SessionDep = Annotated[AsyncSession, Depends(get_session)]
 SettingsDep = Annotated[Settings, Depends(get_settings)]
 RedisDep = Annotated[Redis, Depends(get_redis)]
 SmsDep = Annotated[SmsProvider, Depends(get_sms_provider)]
+StorageDep = Annotated[StorageProvider, Depends(get_storage)]
 
 # auto_error=False so that a missing header produces our own error code, not FastAPI's.
 _bearer = HTTPBearer(auto_error=False, description="Access token from /auth/verify")

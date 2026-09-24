@@ -9,22 +9,24 @@ test('Arabic is the default locale and the page is RTL', async ({ page }) => {
   );
 });
 
-test('placeholder calls the API health endpoint', async ({ page }) => {
-  await page.goto('/');
-  const status = page.getByTestId('health-status');
-  await expect(status).toHaveAttribute('data-state', 'ok');
-  await expect(status).toHaveText('الخادم يعمل');
-});
-
 test('user can switch to English (LTR) and back', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('link', { name: 'اللغة' }).click();
   await expect(page).toHaveURL(/\/en$/);
   await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
-  await expect(page.getByTestId('health-status')).toHaveText('Server is up');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'The trusted used-car marketplace',
+  );
 
   await page.getByRole('link', { name: 'Language' }).click();
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
+});
+
+test('search filters are available without signing in', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByLabel('الماركة')).toBeVisible();
+  await expect(page.getByLabel('المدينة')).toBeVisible();
+  await expect(page.getByTestId('results-count')).toBeVisible();
 });
 
 test('page has no horizontal overflow at phone width', async ({ page }) => {
