@@ -29,4 +29,6 @@ The stack itself is fixed by the brief (§3). This ADR records the smaller choic
    `infra/docker/postgres/Dockerfile`. Extensions (`postgis`, `vector`, `pg_trgm`) are enabled by the
    first Alembic migration so they are versioned and reversible.
 10. **CI lives in `.github/workflows/`** (GitHub requires it) rather than `/infra`.
-11. **Error tracking** is a `ErrorTracker` hook that only logs; the provider is TBD.
+11. **MinIO image.** Official `minio/minio` images are gone from Docker Hub; we use the pinned
+    community build `pgsty/minio` (same server, ships `mc` and `curl`) for both MinIO and bucket init.
+12. **Error tracking** is a `ErrorTracker` hook that only logs; the provider is TBD.

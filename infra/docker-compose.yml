@@ -39,7 +39,9 @@ services:
       retries: 20
 
   minio:
-    image: minio/minio:latest
+    # MinIO stopped publishing official images in 2025; pgsty/minio is a maintained community
+    # build of the same server (includes mc). Pinned for reproducibility.
+    image: &minio-image pgsty/minio:RELEASE.2026-08-04T00-00-00Z
     command: server /data --console-address ":9001"
     environment:
       MINIO_ROOT_USER: minioadmin
@@ -53,7 +55,7 @@ services:
       retries: 20
 
   minio-init:
-    image: minio/mc:latest
+    image: *minio-image
     depends_on:
       minio: { condition: service_healthy }
     entrypoint: >

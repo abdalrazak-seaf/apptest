@@ -65,8 +65,9 @@
 - In the build sandbox, Docker image builds could not reach package mirrors and Docker Hub was
   rate-limited, so the compose stack was verified in CI rather than locally. Locally, the same code was
   verified against host-installed Postgres 16 + PostGIS + pgvector, Redis, and an S3 emulator.
-- MinIO stopped publishing new community images in late 2025; `minio/minio:latest` still works but
-  receives no updates. Fine for local dev; revisit if it disappears (any S3-compatible server works).
+- MinIO's official Docker images (`minio/minio`, `minio/mc`) are no longer published. Compose uses
+  `pgsty/minio` (maintained community build of the same server, pinned release). Any S3-compatible
+  server works behind `StorageProvider` if this ever needs to change.
 - React is pinned to 19.2.3 repo-wide (Expo SDK 57 requirement; hoisted `node_modules`). Upgrade web and
   mobile together (ADR 0001).
 - Mobile language choice is not persisted yet (resets to Arabic on restart) — Phase 1 adds storage.
