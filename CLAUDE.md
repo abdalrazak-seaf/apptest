@@ -81,7 +81,10 @@ docs/           architecture notes, ADRs
 - Dependencies via `Annotated[T, Depends(...)]`. Settings only via `get_settings()`.
 - Route `name=` becomes the OpenAPI `operationId` (and the TS client name): use `verb_noun`.
 - Errors to clients are machine codes (`{"code": "listing_not_found"}`); clients translate them.
-  Never leak exception messages, hosts or stack traces.
+  Never leak exception messages, hosts or stack traces. Raise them with the helpers in
+  `core/errors.py` (`not_found`, `forbidden`, `conflict`, `too_many_requests`, …).
+- Enum columns use `enum_column(SomeEnum)` from `core/models.py`: a VARCHAR with a CHECK
+  constraint that loads back as the enum member. Compare with `==`, never `is`.
 - Migrations must be reversible (`downgrade()` implemented) — the integration test runs
   upgrade → downgrade → upgrade. Use the naming convention in `core/db.py`.
 - Integrations: `integrations/<name>/{base.py (Protocol), mock|memory.py, <vendor>.py}` +
@@ -90,8 +93,17 @@ docs/           architecture notes, ADRs
   LLM output that feeds the DB is validated with Pydantic (retry once, then fall back).
 - Logging: `logging.getLogger(__name__)`, structured `extra={...}`; logs are JSON with request id.
 - `floor_price_sar` must never appear in buyer-facing responses (a test must prove it).
-- ruff (line length 100) + mypy strict must pass. Tests: pytest-asyncio auto mode;
-  mark tests needing real services with `@pytest.mark.integration`.
+- ruff (line length 100) + mypy strict must pass. Tests: pytest-asyncio auto mode.
+- Test fixtures live in `apps/api/src/api/testing.py`, registered as a pytest plugin from the
+  root `pyproject.toml`. API tests run against a real Postgres inside a transaction that is
+  rolled back; Redis is faked and SMS uses the mock provider, so tests never hit the network.
+  Any test using the `connection` fixture is auto-marked `integration`, so `make test-unit`
+  stays infrastructure-free while `make test` runs everything.
+- Auth: access tokens are short-lived JWTs; refresh tokens are opaque, stored hashed and
+  rotated on every use (replaying a rotated token revokes the whole family). OTP codes are
+  stored as keyed hashes and rate-limited per phone and per IP.
+- Seed data lives in `apps/api/src/api/data/*.json` and is applied idempotently by
+  `make seed` (matched by slug).
 
 ## TypeScript conventions
 

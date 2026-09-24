@@ -47,7 +47,8 @@ module = ["arq.*", "aioboto3.*", "botocore.*", "types_aiobotocore_s3.*"]
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-addopts = "--import-mode=importlib"
+# `-p api.testing` registers the shared API fixtures (see apps/api/src/api/testing.py).
+addopts = "--import-mode=importlib -p api.testing"
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "session"
 asyncio_default_test_loop_scope = "session"

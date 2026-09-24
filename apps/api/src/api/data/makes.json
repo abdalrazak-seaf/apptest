@@ -1,0 +1,1392 @@
+[
+  {
+    "slug": "toyota",
+    "name_ar": "تويوتا",
+    "name_en": "Toyota",
+    "aliases": ["تيوتا", "تويتا"],
+    "sort_order": 1,
+    "models": [
+      {
+        "slug": "land-cruiser",
+        "name_ar": "لاند كروزر",
+        "name_en": "Land Cruiser",
+        "aliases": ["لاندكروزر", "لاندكروز", "كروزر"],
+        "body_type": "suv",
+        "trims": [
+          { "slug": "gxr", "name_ar": "جي إكس آر", "name_en": "GXR" },
+          { "slug": "vxr", "name_ar": "في إكس آر", "name_en": "VXR" },
+          { "slug": "gx", "name_ar": "جي إكس", "name_en": "GX" },
+          { "slug": "vx", "name_ar": "في إكس", "name_en": "VX" },
+          { "slug": "gr-sport", "name_ar": "جي آر سبورت", "name_en": "GR Sport" }
+        ]
+      },
+      {
+        "slug": "camry",
+        "name_ar": "كامري",
+        "name_en": "Camry",
+        "aliases": ["كمري"],
+        "body_type": "sedan",
+        "trims": [
+          { "slug": "gl", "name_ar": "جي إل", "name_en": "GL" },
+          { "slug": "gle", "name_ar": "جي إل إي", "name_en": "GLE" },
+          { "slug": "grande", "name_ar": "جراند", "name_en": "Grande" },
+          { "slug": "se", "name_ar": "إس إي", "name_en": "SE" }
+        ]
+      },
+      {
+        "slug": "corolla",
+        "name_ar": "كورولا",
+        "name_en": "Corolla",
+        "aliases": ["كرولا"],
+        "body_type": "sedan",
+        "trims": [
+          { "slug": "xli", "name_ar": "إكس إل آي", "name_en": "XLI" },
+          { "slug": "gli", "name_ar": "جي إل آي", "name_en": "GLI" },
+          { "slug": "se", "name_ar": "إس إي", "name_en": "SE" }
+        ]
+      },
+      {
+        "slug": "prado",
+        "name_ar": "برادو",
+        "name_en": "Prado",
+        "aliases": ["برادوا"],
+        "body_type": "suv",
+        "trims": [
+          { "slug": "txl", "name_ar": "تي إكس إل", "name_en": "TXL" },
+          { "slug": "vxr", "name_ar": "في إكس آر", "name_en": "VXR" },
+          { "slug": "tx", "name_ar": "تي إكس", "name_en": "TX" }
+        ]
+      },
+      {
+        "slug": "hilux",
+        "name_ar": "هايلكس",
+        "name_en": "Hilux",
+        "aliases": ["هيلوكس", "شاص"],
+        "body_type": "pickup",
+        "trims": [
+          { "slug": "gl", "name_ar": "جي إل", "name_en": "GL" },
+          { "slug": "glx", "name_ar": "جي إل إكس", "name_en": "GLX" },
+          { "slug": "adventure", "name_ar": "أدفنتشر", "name_en": "Adventure" }
+        ]
+      },
+      {
+        "slug": "yaris",
+        "name_ar": "يارس",
+        "name_en": "Yaris",
+        "aliases": ["ياريس"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "fortuner",
+        "name_ar": "فورتشنر",
+        "name_en": "Fortuner",
+        "aliases": ["فورشنر"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "avalon",
+        "name_ar": "أفالون",
+        "name_en": "Avalon",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "rav4",
+        "name_ar": "راف فور",
+        "name_en": "RAV4",
+        "aliases": ["راف ٤", "راففور"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "innova",
+        "name_ar": "إنوفا",
+        "name_en": "Innova",
+        "aliases": [],
+        "body_type": "van",
+        "trims": []
+      },
+      {
+        "slug": "hiace",
+        "name_ar": "هايس",
+        "name_en": "Hiace",
+        "aliases": ["هايص"],
+        "body_type": "van",
+        "trims": []
+      },
+      {
+        "slug": "rush",
+        "name_ar": "راش",
+        "name_en": "Rush",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "hyundai",
+    "name_ar": "هيونداي",
+    "name_en": "Hyundai",
+    "aliases": ["هونداي", "هيوندا"],
+    "sort_order": 2,
+    "models": [
+      {
+        "slug": "elantra",
+        "name_ar": "إلنترا",
+        "name_en": "Elantra",
+        "aliases": ["النترا"],
+        "body_type": "sedan",
+        "trims": [
+          { "slug": "smart", "name_ar": "سمارت", "name_en": "Smart" },
+          { "slug": "comfort", "name_ar": "كومفورت", "name_en": "Comfort" }
+        ]
+      },
+      {
+        "slug": "sonata",
+        "name_ar": "سوناتا",
+        "name_en": "Sonata",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "accent",
+        "name_ar": "أكسنت",
+        "name_en": "Accent",
+        "aliases": ["اكسنت"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "tucson",
+        "name_ar": "توسان",
+        "name_en": "Tucson",
+        "aliases": ["توكسون"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "santa-fe",
+        "name_ar": "سنتافي",
+        "name_en": "Santa Fe",
+        "aliases": ["سانتافي"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "creta",
+        "name_ar": "كريتا",
+        "name_en": "Creta",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "azera",
+        "name_ar": "أزيرا",
+        "name_en": "Azera",
+        "aliases": ["ازيرا"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "staria",
+        "name_ar": "ستاريا",
+        "name_en": "Staria",
+        "aliases": [],
+        "body_type": "van",
+        "trims": []
+      },
+      {
+        "slug": "h1",
+        "name_ar": "إتش ١",
+        "name_en": "H1",
+        "aliases": ["اتش ون"],
+        "body_type": "van",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "nissan",
+    "name_ar": "نيسان",
+    "name_en": "Nissan",
+    "aliases": ["نيصان"],
+    "sort_order": 3,
+    "models": [
+      {
+        "slug": "patrol",
+        "name_ar": "باترول",
+        "name_en": "Patrol",
+        "aliases": ["بترول"],
+        "body_type": "suv",
+        "trims": [
+          { "slug": "xe", "name_ar": "إكس إي", "name_en": "XE" },
+          { "slug": "se", "name_ar": "إس إي", "name_en": "SE" },
+          { "slug": "le", "name_ar": "إل إي", "name_en": "LE" },
+          { "slug": "platinum", "name_ar": "بلاتينيوم", "name_en": "Platinum" },
+          { "slug": "nismo", "name_ar": "نيسمو", "name_en": "Nismo" }
+        ]
+      },
+      {
+        "slug": "sunny",
+        "name_ar": "صني",
+        "name_en": "Sunny",
+        "aliases": ["سني"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "altima",
+        "name_ar": "التيما",
+        "name_en": "Altima",
+        "aliases": ["الطيما"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "maxima",
+        "name_ar": "ماكسيما",
+        "name_en": "Maxima",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "xterra",
+        "name_ar": "إكستيرا",
+        "name_en": "Xterra",
+        "aliases": ["اكستيرا"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "navara",
+        "name_ar": "نافارا",
+        "name_en": "Navara",
+        "aliases": [],
+        "body_type": "pickup",
+        "trims": []
+      },
+      {
+        "slug": "kicks",
+        "name_ar": "كيكس",
+        "name_en": "Kicks",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "x-trail",
+        "name_ar": "إكس تريل",
+        "name_en": "X-Trail",
+        "aliases": ["اكس تريل"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "pathfinder",
+        "name_ar": "باثفندر",
+        "name_en": "Pathfinder",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "kia",
+    "name_ar": "كيا",
+    "name_en": "Kia",
+    "aliases": [],
+    "sort_order": 4,
+    "models": [
+      {
+        "slug": "cerato",
+        "name_ar": "سيراتو",
+        "name_en": "Cerato",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "k5",
+        "name_ar": "كي ٥",
+        "name_en": "K5",
+        "aliases": ["اوبتيما", "أوبتيما"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "sportage",
+        "name_ar": "سبورتاج",
+        "name_en": "Sportage",
+        "aliases": ["سبورتيج"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "sorento",
+        "name_ar": "سورينتو",
+        "name_en": "Sorento",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "rio",
+        "name_ar": "ريو",
+        "name_en": "Rio",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "seltos",
+        "name_ar": "سيلتوس",
+        "name_en": "Seltos",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "carnival",
+        "name_ar": "كرنفال",
+        "name_en": "Carnival",
+        "aliases": ["كارنفال"],
+        "body_type": "van",
+        "trims": []
+      },
+      {
+        "slug": "pegas",
+        "name_ar": "بيجاس",
+        "name_en": "Pegas",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "chevrolet",
+    "name_ar": "شفروليه",
+    "name_en": "Chevrolet",
+    "aliases": ["شيفروليه", "شفر", "شيفي"],
+    "sort_order": 5,
+    "models": [
+      {
+        "slug": "tahoe",
+        "name_ar": "تاهو",
+        "name_en": "Tahoe",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": [
+          { "slug": "ls", "name_ar": "إل إس", "name_en": "LS" },
+          { "slug": "lt", "name_ar": "إل تي", "name_en": "LT" },
+          { "slug": "z71", "name_ar": "زد ٧١", "name_en": "Z71" },
+          { "slug": "premier", "name_ar": "بريمير", "name_en": "Premier" }
+        ]
+      },
+      {
+        "slug": "suburban",
+        "name_ar": "سوبربان",
+        "name_en": "Suburban",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "malibu",
+        "name_ar": "ماليبو",
+        "name_en": "Malibu",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "impala",
+        "name_ar": "إمبالا",
+        "name_en": "Impala",
+        "aliases": ["امبالا"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "captiva",
+        "name_ar": "كابتيفا",
+        "name_en": "Captiva",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "silverado",
+        "name_ar": "سلفرادو",
+        "name_en": "Silverado",
+        "aliases": ["سيلفرادو"],
+        "body_type": "pickup",
+        "trims": []
+      },
+      {
+        "slug": "traverse",
+        "name_ar": "ترافرس",
+        "name_en": "Traverse",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "camaro",
+        "name_ar": "كمارو",
+        "name_en": "Camaro",
+        "aliases": ["كامارو"],
+        "body_type": "coupe",
+        "trims": []
+      },
+      {
+        "slug": "groove",
+        "name_ar": "جروف",
+        "name_en": "Groove",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "gmc",
+    "name_ar": "جي إم سي",
+    "name_en": "GMC",
+    "aliases": ["جمس", "جيمس", "جي ام سي"],
+    "sort_order": 6,
+    "models": [
+      {
+        "slug": "yukon",
+        "name_ar": "يوكن",
+        "name_en": "Yukon",
+        "aliases": ["يوكون"],
+        "body_type": "suv",
+        "trims": [
+          { "slug": "sle", "name_ar": "إس إل إي", "name_en": "SLE" },
+          { "slug": "slt", "name_ar": "إس إل تي", "name_en": "SLT" },
+          { "slug": "at4", "name_ar": "إيه تي ٤", "name_en": "AT4" },
+          { "slug": "denali", "name_ar": "دينالي", "name_en": "Denali" }
+        ]
+      },
+      {
+        "slug": "sierra",
+        "name_ar": "سييرا",
+        "name_en": "Sierra",
+        "aliases": ["سيرا"],
+        "body_type": "pickup",
+        "trims": []
+      },
+      {
+        "slug": "terrain",
+        "name_ar": "تيرين",
+        "name_en": "Terrain",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "acadia",
+        "name_ar": "أكاديا",
+        "name_en": "Acadia",
+        "aliases": ["اكاديا"],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "ford",
+    "name_ar": "فورد",
+    "name_en": "Ford",
+    "aliases": [],
+    "sort_order": 7,
+    "models": [
+      {
+        "slug": "f-150",
+        "name_ar": "إف ١٥٠",
+        "name_en": "F-150",
+        "aliases": ["اف ١٥٠", "فورد اف"],
+        "body_type": "pickup",
+        "trims": []
+      },
+      {
+        "slug": "explorer",
+        "name_ar": "إكسبلورر",
+        "name_en": "Explorer",
+        "aliases": ["اكسبلورر"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "taurus",
+        "name_ar": "توروس",
+        "name_en": "Taurus",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "expedition",
+        "name_ar": "إكسبديشن",
+        "name_en": "Expedition",
+        "aliases": ["اكسبديشن"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "edge",
+        "name_ar": "إيدج",
+        "name_en": "Edge",
+        "aliases": ["ايدج"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "mustang",
+        "name_ar": "موستنج",
+        "name_en": "Mustang",
+        "aliases": ["موستانج"],
+        "body_type": "coupe",
+        "trims": []
+      },
+      {
+        "slug": "ranger",
+        "name_ar": "رينجر",
+        "name_en": "Ranger",
+        "aliases": [],
+        "body_type": "pickup",
+        "trims": []
+      },
+      {
+        "slug": "escape",
+        "name_ar": "إسكيب",
+        "name_en": "Escape",
+        "aliases": ["اسكيب"],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "honda",
+    "name_ar": "هوندا",
+    "name_en": "Honda",
+    "aliases": [],
+    "sort_order": 8,
+    "models": [
+      {
+        "slug": "accord",
+        "name_ar": "أكورد",
+        "name_en": "Accord",
+        "aliases": ["اكورد"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "civic",
+        "name_ar": "سيفيك",
+        "name_en": "Civic",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "cr-v",
+        "name_ar": "سي آر في",
+        "name_en": "CR-V",
+        "aliases": ["سي ار في"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "pilot",
+        "name_ar": "بايلوت",
+        "name_en": "Pilot",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "odyssey",
+        "name_ar": "أوديسي",
+        "name_en": "Odyssey",
+        "aliases": ["اوديسي"],
+        "body_type": "van",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "lexus",
+    "name_ar": "لكزس",
+    "name_en": "Lexus",
+    "aliases": ["لكسس", "لاكزس"],
+    "sort_order": 9,
+    "models": [
+      {
+        "slug": "lx",
+        "name_ar": "إل إكس",
+        "name_en": "LX",
+        "aliases": ["ال اكس"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "gx",
+        "name_ar": "جي إكس",
+        "name_en": "GX",
+        "aliases": ["جي اكس"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "es",
+        "name_ar": "إي إس",
+        "name_en": "ES",
+        "aliases": ["اي اس"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "rx",
+        "name_ar": "آر إكس",
+        "name_en": "RX",
+        "aliases": ["ار اكس"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "is",
+        "name_ar": "آي إس",
+        "name_en": "IS",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "nx",
+        "name_ar": "إن إكس",
+        "name_en": "NX",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "ls",
+        "name_ar": "إل إس",
+        "name_en": "LS",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "mercedes-benz",
+    "name_ar": "مرسيدس",
+    "name_en": "Mercedes-Benz",
+    "aliases": ["مرسيدس بنز", "بنز", "مرسدس"],
+    "sort_order": 10,
+    "models": [
+      {
+        "slug": "c-class",
+        "name_ar": "الفئة سي",
+        "name_en": "C-Class",
+        "aliases": ["سي كلاس"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "e-class",
+        "name_ar": "الفئة إي",
+        "name_en": "E-Class",
+        "aliases": ["اي كلاس"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "s-class",
+        "name_ar": "الفئة إس",
+        "name_en": "S-Class",
+        "aliases": ["اس كلاس"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "g-class",
+        "name_ar": "الفئة جي",
+        "name_en": "G-Class",
+        "aliases": ["جي كلاس", "جيب جي"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "gle",
+        "name_ar": "جي إل إي",
+        "name_en": "GLE",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "glc",
+        "name_ar": "جي إل سي",
+        "name_en": "GLC",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "bmw",
+    "name_ar": "بي إم دبليو",
+    "name_en": "BMW",
+    "aliases": ["بي ام دبليو", "بمو"],
+    "sort_order": 11,
+    "models": [
+      {
+        "slug": "3-series",
+        "name_ar": "الفئة الثالثة",
+        "name_en": "3 Series",
+        "aliases": ["فئة ٣"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "5-series",
+        "name_ar": "الفئة الخامسة",
+        "name_en": "5 Series",
+        "aliases": ["فئة ٥"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "7-series",
+        "name_ar": "الفئة السابعة",
+        "name_en": "7 Series",
+        "aliases": ["فئة ٧"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "x5",
+        "name_ar": "إكس ٥",
+        "name_en": "X5",
+        "aliases": ["اكس ٥"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "x6",
+        "name_ar": "إكس ٦",
+        "name_en": "X6",
+        "aliases": ["اكس ٦"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "x3",
+        "name_ar": "إكس ٣",
+        "name_en": "X3",
+        "aliases": ["اكس ٣"],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "land-rover",
+    "name_ar": "لاند روفر",
+    "name_en": "Land Rover",
+    "aliases": ["لاندروفر"],
+    "sort_order": 12,
+    "models": [
+      {
+        "slug": "range-rover",
+        "name_ar": "رنج روفر",
+        "name_en": "Range Rover",
+        "aliases": ["رنج"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "range-rover-sport",
+        "name_ar": "رنج روفر سبورت",
+        "name_en": "Range Rover Sport",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "discovery",
+        "name_ar": "ديسكفري",
+        "name_en": "Discovery",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "defender",
+        "name_ar": "ديفندر",
+        "name_en": "Defender",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "mitsubishi",
+    "name_ar": "ميتسوبيشي",
+    "name_en": "Mitsubishi",
+    "aliases": ["متسوبيشي"],
+    "sort_order": 13,
+    "models": [
+      {
+        "slug": "pajero",
+        "name_ar": "باجيرو",
+        "name_en": "Pajero",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "lancer",
+        "name_ar": "لانسر",
+        "name_en": "Lancer",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "l200",
+        "name_ar": "إل ٢٠٠",
+        "name_en": "L200",
+        "aliases": ["ال ٢٠٠"],
+        "body_type": "pickup",
+        "trims": []
+      },
+      {
+        "slug": "attrage",
+        "name_ar": "أتراج",
+        "name_en": "Attrage",
+        "aliases": ["اتراج"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "montero",
+        "name_ar": "مونتيرو",
+        "name_en": "Montero",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "xpander",
+        "name_ar": "إكسباندر",
+        "name_en": "Xpander",
+        "aliases": ["اكسباندر"],
+        "body_type": "van",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "mazda",
+    "name_ar": "مازدا",
+    "name_en": "Mazda",
+    "aliases": [],
+    "sort_order": 14,
+    "models": [
+      {
+        "slug": "mazda-3",
+        "name_ar": "مازدا ٣",
+        "name_en": "Mazda 3",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "mazda-6",
+        "name_ar": "مازدا ٦",
+        "name_en": "Mazda 6",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "cx-5",
+        "name_ar": "سي إكس ٥",
+        "name_en": "CX-5",
+        "aliases": ["سي اكس ٥"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "cx-9",
+        "name_ar": "سي إكس ٩",
+        "name_en": "CX-9",
+        "aliases": ["سي اكس ٩"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "cx-3",
+        "name_ar": "سي إكس ٣",
+        "name_en": "CX-3",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "jeep",
+    "name_ar": "جيب",
+    "name_en": "Jeep",
+    "aliases": [],
+    "sort_order": 15,
+    "models": [
+      {
+        "slug": "grand-cherokee",
+        "name_ar": "جراند شيروكي",
+        "name_en": "Grand Cherokee",
+        "aliases": ["شيروكي"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "wrangler",
+        "name_ar": "رانجلر",
+        "name_en": "Wrangler",
+        "aliases": ["رانغلر"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "compass",
+        "name_ar": "كومباس",
+        "name_en": "Compass",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "dodge",
+    "name_ar": "دودج",
+    "name_en": "Dodge",
+    "aliases": [],
+    "sort_order": 16,
+    "models": [
+      {
+        "slug": "charger",
+        "name_ar": "تشارجر",
+        "name_en": "Charger",
+        "aliases": ["شارجر"],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "challenger",
+        "name_ar": "تشالنجر",
+        "name_en": "Challenger",
+        "aliases": ["شالنجر"],
+        "body_type": "coupe",
+        "trims": []
+      },
+      {
+        "slug": "durango",
+        "name_ar": "دورانجو",
+        "name_en": "Durango",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "ram",
+        "name_ar": "رام",
+        "name_en": "Ram",
+        "aliases": [],
+        "body_type": "pickup",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "isuzu",
+    "name_ar": "إيسوزو",
+    "name_en": "Isuzu",
+    "aliases": ["ايسوزو"],
+    "sort_order": 17,
+    "models": [
+      {
+        "slug": "d-max",
+        "name_ar": "دي ماكس",
+        "name_en": "D-Max",
+        "aliases": [],
+        "body_type": "pickup",
+        "trims": []
+      },
+      {
+        "slug": "mu-x",
+        "name_ar": "إم يو إكس",
+        "name_en": "MU-X",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "volkswagen",
+    "name_ar": "فولكس واجن",
+    "name_en": "Volkswagen",
+    "aliases": ["فوكس فاجن", "فولكس"],
+    "sort_order": 18,
+    "models": [
+      {
+        "slug": "golf",
+        "name_ar": "جولف",
+        "name_en": "Golf",
+        "aliases": [],
+        "body_type": "hatchback",
+        "trims": []
+      },
+      {
+        "slug": "passat",
+        "name_ar": "باسات",
+        "name_en": "Passat",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "tiguan",
+        "name_ar": "تيجوان",
+        "name_en": "Tiguan",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "teramont",
+        "name_ar": "تيرامونت",
+        "name_en": "Teramont",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "infiniti",
+    "name_ar": "إنفينيتي",
+    "name_en": "Infiniti",
+    "aliases": ["انفينيتي"],
+    "sort_order": 19,
+    "models": [
+      {
+        "slug": "qx80",
+        "name_ar": "كيو إكس ٨٠",
+        "name_en": "QX80",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "qx60",
+        "name_ar": "كيو إكس ٦٠",
+        "name_en": "QX60",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "q50",
+        "name_ar": "كيو ٥٠",
+        "name_en": "Q50",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "cadillac",
+    "name_ar": "كاديلاك",
+    "name_en": "Cadillac",
+    "aliases": [],
+    "sort_order": 20,
+    "models": [
+      {
+        "slug": "escalade",
+        "name_ar": "إسكاليد",
+        "name_en": "Escalade",
+        "aliases": ["اسكاليد"],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "xt5",
+        "name_ar": "إكس تي ٥",
+        "name_en": "XT5",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "mg",
+    "name_ar": "إم جي",
+    "name_en": "MG",
+    "aliases": ["ام جي"],
+    "sort_order": 21,
+    "models": [
+      {
+        "slug": "zs",
+        "name_ar": "زد إس",
+        "name_en": "ZS",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "rx5",
+        "name_ar": "آر إكس ٥",
+        "name_en": "RX5",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "mg5",
+        "name_ar": "إم جي ٥",
+        "name_en": "MG5",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "chery",
+    "name_ar": "شيري",
+    "name_en": "Chery",
+    "aliases": ["شري"],
+    "sort_order": 22,
+    "models": [
+      {
+        "slug": "tiggo",
+        "name_ar": "تيجو",
+        "name_en": "Tiggo",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "arrizo",
+        "name_ar": "أريزو",
+        "name_en": "Arrizo",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "changan",
+    "name_ar": "شانجان",
+    "name_en": "Changan",
+    "aliases": ["تشانجان"],
+    "sort_order": 23,
+    "models": [
+      {
+        "slug": "cs35",
+        "name_ar": "سي إس ٣٥",
+        "name_en": "CS35",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "cs75",
+        "name_ar": "سي إس ٧٥",
+        "name_en": "CS75",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "eado",
+        "name_ar": "إيدو",
+        "name_en": "Eado",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "geely",
+    "name_ar": "جيلي",
+    "name_en": "Geely",
+    "aliases": [],
+    "sort_order": 24,
+    "models": [
+      {
+        "slug": "emgrand",
+        "name_ar": "إمجراند",
+        "name_en": "Emgrand",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "coolray",
+        "name_ar": "كولراي",
+        "name_en": "Coolray",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "suzuki",
+    "name_ar": "سوزوكي",
+    "name_en": "Suzuki",
+    "aliases": [],
+    "sort_order": 25,
+    "models": [
+      {
+        "slug": "swift",
+        "name_ar": "سويفت",
+        "name_en": "Swift",
+        "aliases": [],
+        "body_type": "hatchback",
+        "trims": []
+      },
+      {
+        "slug": "vitara",
+        "name_ar": "فيتارا",
+        "name_en": "Vitara",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "jimny",
+        "name_ar": "جيمني",
+        "name_en": "Jimny",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "audi",
+    "name_ar": "أودي",
+    "name_en": "Audi",
+    "aliases": ["اودي"],
+    "sort_order": 26,
+    "models": [
+      {
+        "slug": "a6",
+        "name_ar": "إيه ٦",
+        "name_en": "A6",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "q7",
+        "name_ar": "كيو ٧",
+        "name_en": "Q7",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "q5",
+        "name_ar": "كيو ٥",
+        "name_en": "Q5",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "porsche",
+    "name_ar": "بورش",
+    "name_en": "Porsche",
+    "aliases": ["بورشه"],
+    "sort_order": 27,
+    "models": [
+      {
+        "slug": "cayenne",
+        "name_ar": "كايين",
+        "name_en": "Cayenne",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "macan",
+        "name_ar": "ماكان",
+        "name_en": "Macan",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      },
+      {
+        "slug": "911",
+        "name_ar": "٩١١",
+        "name_en": "911",
+        "aliases": [],
+        "body_type": "coupe",
+        "trims": []
+      }
+    ]
+  },
+  {
+    "slug": "genesis",
+    "name_ar": "جينيسيس",
+    "name_en": "Genesis",
+    "aliases": ["جنسس"],
+    "sort_order": 28,
+    "models": [
+      {
+        "slug": "g80",
+        "name_ar": "جي ٨٠",
+        "name_en": "G80",
+        "aliases": [],
+        "body_type": "sedan",
+        "trims": []
+      },
+      {
+        "slug": "gv80",
+        "name_ar": "جي في ٨٠",
+        "name_en": "GV80",
+        "aliases": [],
+        "body_type": "suv",
+        "trims": []
+      }
+    ]
+  }
+]
