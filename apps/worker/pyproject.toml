@@ -1,0 +1,16 @@
+[project]
+name = "worker"
+version = "0.1.0"
+description = "[APP_NAME] background jobs (ARQ)"
+requires-python = ">=3.12,<3.13"
+dependencies = ["api", "arq>=0.26"]
+
+[tool.uv.sources]
+api = { workspace = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/worker"]

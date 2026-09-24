@@ -1,0 +1,89 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  UV_PYTHON: '3.12'
+  NEXT_TELEMETRY_DISABLED: '1'
+  TURBO_TELEMETRY_DISABLED: '1'
+
+jobs:
+  python:
+    name: Python (lint, types, tests)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Start Postgres, Redis, MinIO
+        run: |
+          docker compose -f infra/docker-compose.yml up -d --build --wait postgres redis minio
+          docker compose -f infra/docker-compose.yml run --rm minio-init
+      - run: uv sync --all-packages --frozen
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy
+      - name: Tests (unit + integration)
+        run: uv run pytest apps --cov=api --cov=worker --cov-report=term-missing
+        env:
+          DATABASE_URL: postgresql+asyncpg://thiqa:thiqa@localhost:5432/thiqa_test
+
+  js:
+    name: TypeScript (lint, types, tests, build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm format:check
+      - run: pnpm turbo run lint typecheck test
+      - name: Generated files are up to date
+        run: |
+          pnpm --filter @thiqa/api-client generate
+          pnpm --filter @thiqa/ui generate
+          git diff --exit-code -- packages/api-client packages/ui
+      - run: pnpm --filter @thiqa/web build
+      - name: Mobile bundles (iOS + Android)
+        run: pnpm --filter @thiqa/mobile exec expo export --platform android --platform ios --output-dir /tmp/expo-export
+        env:
+          EXPO_OFFLINE: '1'
+          CI: '1'
+
+  e2e:
+    name: Web end-to-end (Playwright)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: uv sync --all-packages --frozen
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @thiqa/web exec playwright install --with-deps chromium
+      - run: pnpm --filter @thiqa/web build
+      - run: pnpm --filter @thiqa/web e2e
+        env:
+          CI: '1'
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: apps/web/playwright-report
+          retention-days: 7

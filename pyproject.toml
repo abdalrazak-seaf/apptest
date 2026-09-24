@@ -1,0 +1,54 @@
+[project]
+name = "thiqa-workspace"
+version = "0.0.0"
+requires-python = ">=3.12,<3.13"
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["apps/api", "apps/worker"]
+
+[dependency-groups]
+dev = [
+  "mypy>=1.11",
+  "pre-commit>=3.8",
+  "pytest>=8.3",
+  "pytest-asyncio>=0.24",
+  "pytest-cov>=5.0",
+  "ruff>=0.6",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["apps/api/migrations/versions"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "N", "S", "ASYNC", "RUF", "SIM", "PTH"]
+ignore = ["RUF001", "RUF002", "RUF003"]  # Arabic text is intentional
+
+[tool.ruff.lint.isort]
+known-first-party = ["api", "worker"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["S101", "S105", "S106"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+mypy_path = ["apps/api/src", "apps/worker/src"]
+explicit_package_bases = true
+files = ["apps/api/src", "apps/api/tests", "apps/worker/src", "apps/worker/tests"]
+
+[[tool.mypy.overrides]]
+module = ["arq.*", "aioboto3.*", "botocore.*", "types_aiobotocore_s3.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
+markers = ["integration: needs real Postgres/Redis/MinIO (make infra-up)"]

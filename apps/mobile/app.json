@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "[APP_NAME]",
+    "slug": "thiqa",
+    "scheme": "thiqa",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": { "supportsTablet": false, "bundleIdentifier": "com.example.thiqa" },
+    "android": { "package": "com.example.thiqa" },
+    "plugins": [
+      "expo-router",
+      ["expo-localization", { "supportsRTL": true }],
+      "expo-status-bar",
+      "expo-font"
+    ],
+    "extra": {
+      "supportsRTL": true,
+      "forcesRTL": true
+    },
+    "experiments": { "typedRoutes": true }
+  }
+}

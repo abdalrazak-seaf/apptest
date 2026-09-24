@@ -1,0 +1,12 @@
+pnpm-lock.yaml
+uv.lock
+**/.next
+**/.expo
+**/dist
+**/node_modules
+**/playwright-report
+**/test-results
+packages/api-client/openapi.json
+packages/api-client/src/schema.d.ts
+PROJECT_BRIEF.md
+*.py
